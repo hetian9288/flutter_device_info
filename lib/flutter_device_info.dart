@@ -4,29 +4,42 @@ import 'package:flutter/services.dart';
 
 class FlutterDeviceInfo {
 
-  Map<dynamic, dynamic>constants;
-
   static const MethodChannel _channel =
       const MethodChannel('flutter_device_info');
 
-  FlutterDeviceInfo() {
-    this.init();
+  FlutterDeviceInfo() {}
+
+  Future<FlutterDeviceInfoFields> getFields() async {
+    Map<dynamic, dynamic> constants = await _channel.invokeMethod('getConstants');
+    return FlutterDeviceInfoFields(constants);
   }
 
-  void init() async {
-    this.constants = await _channel.invokeMethod('getConstants');
-  }
-
-  // 应用名称
-  String get appName {
-    return this.constants["appName"];
-  }
-
+  
   // 电池电量
   Future<double> get batteryLevel async {
     final dynamic battery = await _channel.invokeMethod('batteryLevel');
     return battery;
   }
+
+  // 获取IP地址
+  static Future<String> get IPAddress async {
+    final dynamic ip = await _channel.invokeMethod('IPAddress');
+    return ip;
+  }
+
+}
+
+class FlutterDeviceInfoFields {
+
+  Map<dynamic, dynamic>constants;
+
+  FlutterDeviceInfoFields(this.constants);
+
+// 应用名称
+  String get appName {
+    return this.constants["appName"];
+  }
+
 
   // 手机品牌
   String get brand {
@@ -66,12 +79,6 @@ class FlutterDeviceInfo {
   // 获取设备自定义名称 王奇的iphone
   String get deviceName {
     return this.constants["deviceName"];
-  }
-
-  // 获取IP地址
-  static Future<String> get IPAddress async {
-    final dynamic ip = await _channel.invokeMethod('IPAddress');
-    return ip;
   }
 
   // 设备制造商
