@@ -11,7 +11,6 @@ class FlutterDeviceInfo {
 
   FlutterDeviceInfo() {
     this.init();
-    print(constants);
   }
 
   void init() async {
