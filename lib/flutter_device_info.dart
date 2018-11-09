@@ -36,99 +36,82 @@ class FlutterDeviceInfoFields {
   FlutterDeviceInfoFields(this.constants);
 
 // 应用名称
-  String get appName {
-    return this.constants["appName"];
-  }
+  String get appName => this.constants["appName"];
+
 
 
   // 手机品牌
-  String get brand {
-    return this.constants["brand"];
-  }
+  String get brand => this.constants["brand"];
+
 
   // 获取应用程序内部版本号
-  String get buildNumber {
-    return this.constants["buildNumber"];
-  }
+  String get buildNumber => this.constants["buildNumber"];
+
 
   // 获取包名
-  String get bundleId {
-    return this.constants["bundleId"];
-  }
+  String get bundleId => this.constants["bundleId"];
+
 
   // 获取运营商
-  String get carrier {
-    return this.constants["carrier"];
-  }
+  String get carrier => this.constants["carrier"];
+
 
   // 根据区域设置信息获取设备国家/地区
-  String get deviceCountry {
-    return this.constants["deviceCountry"];
-  }
+  String get deviceCountry => this.constants["deviceCountry"];
+
 
   // 获取 device ID iOS: "iPhone7,2" Android: "goldfish"
-  String get deviceId {
-    return this.constants["deviceId"];
-  }
+  String get deviceId => this.constants["deviceId"];
+
 
   // 获取设备区域设置
-  String get deviceLocale  {
-    return this.constants["deviceLocale"];
-  }
+  String get deviceLocale => this.constants["deviceLocale"];
+
 
   // 获取设备自定义名称 王奇的iphone
-  String get deviceName {
-    return this.constants["deviceName"];
-  }
+  String get deviceName => this.constants["deviceName"];
+
 
   // 设备制造商
-  String get manufacturer {
-    return this.constants["manufacturer"];
-  }
+  String get manufacturer => this.constants["manufacturer"];
+
 
   //
-  String get model {
-    return this.constants["model"];
-  }
+  String get model => this.constants["model"];
+
 
   // 应用版本
-  String get readableVersion {
-    return this.constants["appVersion"] + '.' + this.constants["buildNumber"];
-  }
+  String get readableVersion => this.constants["appVersion"] + '.' + this.constants["buildNumber"];
+
 
   // 应用版本号
-  String get version {
-    return this.constants["appVersion"];
-  }
+  String get version => this.constants["appVersion"];
+
 
   // 获取设备操作系统
-  String get systemName {
-    return this.constants["systemName"];
-  }
+  String get systemName => this.constants["systemName"];
+
 
   // 获取设备操作系统版本
-  String get systemVersion {
-    return this.constants["systemVersion"];
-  }
+  String get systemVersion => this.constants["systemVersion"];
+
 
   // 获取时区
-  String get timezone {
-    return this.constants["timezone"];
-  }
+  String get timezone => this.constants["timezone"];
+
 
   // 获取磁盘存储大小（以字节为单位）
-  int get totalDiskCapacity {
-    return this.constants["totalDiskCapacity"];
-  }
+  int get totalDiskCapacity => this.constants["totalDiskCapacity"];
+
 
   // 获取设备内存（以字节为单位）
-  int get totalMemory {
-    return this.constants["totalMemory"];
-  }
+  int get totalMemory => this.constants["totalMemory"];
+
 
   // 获取设备唯一ID
-  String get uniqueId {
-    return this.constants["totalMemory"];
-  }
+  String get uniqueId => this.constants["uniqueId"];
+
+  // 仅适用与安卓
+  String get imei => this.constants["imei"];
 
 }
