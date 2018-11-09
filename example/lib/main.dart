@@ -23,7 +23,8 @@ class _MyAppState extends State<MyApp> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     FlutterDeviceInfo flutterDeviceInfo = FlutterDeviceInfo();
-    await flutterDeviceInfo.init();
+    final fields = await flutterDeviceInfo.getFields();
+
   }
 
   @override

@@ -156,6 +156,17 @@ public class FlutterDeviceInfoPlugin implements MethodCallHandler {
         return null;
     }
 
+    public String getIMEI(Context context) {
+        String imei;
+        try {
+            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            imei = telephonyManager.getDeviceId();
+        } catch (Exception e) {
+            imei = "";
+        }
+        return imei;
+    }
+
   public void getiConstants() {
       constants = new HashMap<String, Object>();
 
@@ -217,6 +228,7 @@ public class FlutterDeviceInfoPlugin implements MethodCallHandler {
       constants.put("carrier", this.getCarrier());
       constants.put("totalDiskCapacity", this.getTotalDiskCapacity());
       constants.put("freeDiskStorage", this.getFreeDiskStorage());
+      constants.put("imei", this.getIMEI());
 
       Runtime rt = Runtime.getRuntime();
       constants.put("maxMemory", String.valueOf(rt.maxMemory()));
