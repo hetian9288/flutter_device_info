@@ -156,11 +156,15 @@ public class FlutterDeviceInfoPlugin implements MethodCallHandler {
         return null;
     }
 
-    public String getIMEI(Context context) {
+    public String getIMEI() {
         String imei;
         try {
-            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            imei = telephonyManager.getDeviceId();
+            TelephonyManager telephonyManager = (TelephonyManager) this.mContext.getSystemService(Context.TELEPHONY_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                imei = telephonyManager.getImei();
+            }else {
+                imei = telephonyManager.getDeviceId();
+            }
         } catch (Exception e) {
             imei = "";
         }
