@@ -61,6 +61,9 @@ public class FlutterDeviceInfoPlugin implements MethodCallHandler {
         case "getConstants":
             result.success(constants);
             break;
+        case "getImei":
+            result.success(this.getIMEI());
+            break;
         case "batteryLevel":
             getBatteryLevel(call, result);
             break;
@@ -166,6 +169,7 @@ public class FlutterDeviceInfoPlugin implements MethodCallHandler {
                 imei = telephonyManager.getDeviceId();
             }
         } catch (Exception e) {
+            Log.d("getIMEI - error", "getIMEI: " + e.toString());
             imei = "";
         }
         return imei;
