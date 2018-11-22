@@ -7,11 +7,17 @@ class FlutterDeviceInfo {
   static const MethodChannel _channel =
       const MethodChannel('flutter_device_info');
 
-  FlutterDeviceInfo() {}
+  FlutterDeviceInfo();
 
   Future<FlutterDeviceInfoFields> getFields() async {
     Map<dynamic, dynamic> constants = await _channel.invokeMethod('getConstants');
     return FlutterDeviceInfoFields(constants);
+  }
+
+  // 仅限安卓使用
+  Future<String> getImei() async {
+    String imei = await _channel.invokeMethod('getImei');
+    return imei;
   }
 
   
@@ -37,8 +43,6 @@ class FlutterDeviceInfoFields {
 
 // 应用名称
   String get appName => this.constants["appName"];
-
-
 
   // 手机品牌
   String get brand => this.constants["brand"];
@@ -81,7 +85,7 @@ class FlutterDeviceInfoFields {
 
 
   // 应用版本
-  String get readableVersion => this.constants["appVersion"] + '.' + this.constants["buildNumber"];
+  String get readableVersion => "${this.constants["appVersion"]}.${this.constants["buildNumber"]}";
 
 
   // 应用版本号
@@ -114,4 +118,8 @@ class FlutterDeviceInfoFields {
   // 仅适用与安卓
   String get imei => this.constants["imei"];
 
+  // 首次获取权限后重设IMEI
+  set imei(String v) {
+    this.constants["imei"] = v;
+  }
 }
